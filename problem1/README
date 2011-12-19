@@ -1,0 +1,9 @@
+
+
+cat input.txt | ./mapper.py | ./reducer.py
+
+hadoop dfs -copyFromLocal ./fullinput.txt /user/hduser/euler/problem1-fullinput
+
+hadoop jar /usr/local/hadoop/contrib/streaming/hadoop-*streaming*.jar -file ./mapper.py -mapper ./mapper.py -file ./reducer.py -reducer ./reducer.py -input /user/hduser/euler/problem1-fullinput -output /user/hduser/euler/problem1-fulloutput
+
+hadoop dfs -cat /user/hduser/euler/problem1-fulloutput/part-00000
